@@ -59,8 +59,12 @@ window.onmousemove = function (e) {
   mousePos = e.clientY;
 };
 
-window.onclick = window.ontouchstart = function (e) {
+window.onclick = function (e) {
   mousePos = e.clientY;
+};
+
+window.ontouchstart = function (e) {
+  mousePos = e.touches[0].clientY;
 };
 
 window.onresize = calculateMargins;
