@@ -42,7 +42,6 @@ gulp.task('all', ['copy', 'jsconcat', 'jsmin', 'css']);
 
 // Watch
 gulp.task('watch', function () {
-	gulp.watch(['src/index.html', 'src/assets/**/**'], ['copy']);
 	gulp.watch('./src/*.css', ['css']);
 	gulp.watch('./src/*.js', ['jsconcat', 'jsmin']);
 });
@@ -57,8 +56,9 @@ gulp.task('deploy', function () {
 });
 
 // Package
+gulp.task('package', ['all', 'zip']);
+
 gulp.task('zip', function () {
-	gulp.start('all');
 	gulp.src(['dist/*', 'other/*'])
 		.pipe(zip('Cover.zip'))
 		.pipe(gulp.dest(''));
