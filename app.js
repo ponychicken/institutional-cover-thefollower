@@ -59,7 +59,7 @@ window.onmousemove = function (e) {
   mousePos = e.clientY;
 };
 
-window.onclick = function (e) {
+window.onclick = window.ontouchstart = function (e) {
   mousePos = e.clientY;
 };
 
