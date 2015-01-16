@@ -8,7 +8,7 @@ h2span.innerHTML = coverSubtitle;
 var screenHeight = window.innerHeight;
 
 var percentage = 50;
-var mousePos = 0;
+var mousePos = screenHeight / 2;
 
 var marginTop = 8;
 var marginBottom = 95;
@@ -33,6 +33,14 @@ function calculateMargins() {
 
 window.onmousemove = function (e) {
   mousePos = e.clientY;
+};
+
+window.onclick = function (e) {
+  mousePos = e.clientY;
+};
+
+window.ontouchstart = function (e) {
+  mousePos = e.touches[0].clientY;
 };
 
 window.onresize = calculateMargins;
