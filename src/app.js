@@ -2,8 +2,6 @@ var h1 = document.querySelector('h1');
 var h2 = document.querySelector('h2');
 var h1span = document.querySelector('h1 span');
 var h2span = document.querySelector('h2 span');
-h1span.innerHTML = coverTitle;
-h2span.innerHTML = coverSubtitle;
 
 var screenHeight = window.innerHeight;
 
@@ -45,6 +43,18 @@ window.ontouchstart = function (e) {
 
 window.onresize = calculateMargins;
 
-calculateMargins();
-
-requestAnimationFrame(updatePercentage);
+getTitleData(function (msg) {
+  h1span.innerHTML = msg.title;
+  h2span.innerHTML = msg.subtitle;
+  
+  // Add link to body to have the parent redirect to the magazine URL
+  if (msg.isHomepage) {
+    document.body.addEventListener('click', function() {
+      redirectParent(msg.domain_path);
+    });
+    document.body.style.cursor = 'pointer';
+  }
+  
+  calculateMargins();
+  requestAnimationFrame(updatePercentage);
+});
